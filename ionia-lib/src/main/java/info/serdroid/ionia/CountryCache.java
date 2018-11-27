@@ -40,7 +40,6 @@ public class CountryCache {
 	}
 
 	@PostConstruct
-//	void load(@Observes @Initialized(ApplicationScoped.class) Object obj) {
 	void load() {
 		System.out.println("---- MenuCache#reload ----");
 		NOT_FOUND = new Country();

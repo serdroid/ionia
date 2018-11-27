@@ -2,7 +2,6 @@ package info.serdroid.ionia;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import info.serdroid.ionia.model.Country;
 
