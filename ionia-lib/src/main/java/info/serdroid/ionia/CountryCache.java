@@ -3,17 +3,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
+import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Initialized;
+import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
 import info.serdroid.ionia.model.Country;
 
-@Singleton
-@Startup
+@ApplicationScoped
 public class CountryCache {
-	public Country NOT_FOUND;
+	Country NOT_FOUND;
 	
 	@Inject
 	CountryDao countryDao;
@@ -39,9 +38,7 @@ public class CountryCache {
 		return found != null ? found : NOT_FOUND;
 	}
 
-	@PostConstruct
-//	void load(@Observes @Initialized(ApplicationScoped.class) Object obj) {
-	void load() {
+	void load(@Observes @Initialized(ApplicationScoped.class) Object obj) {
 		System.out.println("---- MenuCache#reload ----");
 		NOT_FOUND = new Country();
 		NOT_FOUND.setId((short) -1);
